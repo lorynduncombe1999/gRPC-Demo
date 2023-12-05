@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+option csharp_namespace = "gRPC";
+
+package todoit;
+
+service ToDoIt{
+  //Create - You dont pass the Id because the Db will take care of it 
+  rpc CreateToDo(CreateToDoRequest) returns(CreateToDoResponse){}
+
+  //Read Single - Protobuff uses snake_case to define properties
+  rpc ReadToDo(ReadToDoRequest) returns(ReadToDoResponse){}
+  //Read List
+  rpc ListToDo(GetAllRequest) returns(GetAllResponse){}
+  //Update
+  rpc UpdateToDo(UpdateToDoRequest) returns(UpdateToDoResponse){}
+  //Delete
+  rpc DeleteToDo(DeleteToDoRequest) returns(DeleteToDoResponse){}
+}
+message CreateToDoRequest{
+  string title = 1;
+  string description = 2;
+}
+
+message CreateToDoResponse{
+  int32 id = 1;
+
+}
+
+message ReadToDoRequest{
+  int32 id = 1;
+}
+
+message  ReadToDoResponse{
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+  string to_do_status = 4;
+}
+
+message GetAllRequest{}
+
+message GetAllResponse{
+  repeated ReadToDoResponse to_do = 1;
+}
+
+message UpdateToDoRequest{
+  int32  id = 1;
+  string title = 2;
+  string description = 3;
+  string to_do_status = 4;
+}
+
+message UpdateToDoResponse{
+  int32 id = 1;
+}
+message DeleteToDoRequest{
+  int32 id = 1;
+}
+message DeleteToDoResponse{
+  int32 id = 1;
+}

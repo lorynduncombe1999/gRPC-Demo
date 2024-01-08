@@ -15,6 +15,14 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
+    /// <summary>
+    /// Constructor for unit testing
+    /// </summary>
 
-    public DbSet<ToDoItem> ToDoItems => Set<ToDoItem>();
+    public AppDbContext()
+    {
+        
+    }
+
+    public virtual DbSet<ToDoItem> ToDoItems => Set<ToDoItem>();
 }

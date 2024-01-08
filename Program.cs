@@ -1,6 +1,9 @@
+using System.Text;
 using gRPC.Data;
 using gRPC.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlite("Data Source=To
 builder.Services.AddGrpc();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 app.MapGrpcService<GreeterService>();
